@@ -39,7 +39,7 @@ def main(filein, period):
         tickers = fin.readlines()
     portfolio = buildportfolio(tickers, period)
     portfolio.sort(key=lambda stock: stock.coef)
-    with open('stocks.csv', 'wt') as fout:
+    with open('tickers.out', 'wt') as fout:
         for stock in portfolio:
             fout.write(f"{stock.ticker},{stock.coef}\r\n")
 
@@ -52,4 +52,4 @@ if __name__ == "__main__":
                         help="Period")
     args = parser.parse_args()
     print(args.fin)
-    main(args.fin)
+    main(args.fin, args.period)
